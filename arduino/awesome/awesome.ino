@@ -41,7 +41,7 @@ int servoPos = 0;    // variable to store the servo position
 #define B 11
 
 
-// pins that receive input for ROCK, PAPER, and SCISSOR
+// pins that receive input for ROCK, PAPER, and SCISSOR - for this set up we need to use the Analog Pins to read the light sensors
 #define PIN_ROCK A3
 #define PIN_PAPER A4
 #define PIN_SCISSORS A5
@@ -267,7 +267,9 @@ void setup() {
 }
 
 void loop() {
-  lightReading = analogRead(PIN_ROCK);
+  lightReadingROCK = analogRead(PIN_ROCK);
+  lightReadingPAPER = analogRead(PIN_PAPER);
+  lightReadingSCISSORS = analogRead(PIN_SCISSORS);
   
   if (readyButton.uniquePress())
     rpa.bow();
@@ -279,7 +281,8 @@ void loop() {
   if (lightReadingPAPER < 100){
     rpa.choose_PAPER();
   }
-
+  
+  
   if (lightReadingSCISSORS < 100){
     rpa.choose_SCISSORS();
   }
